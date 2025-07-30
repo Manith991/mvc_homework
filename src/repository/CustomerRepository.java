@@ -8,7 +8,7 @@ import java.util.List;
 public class CustomerRepository {
 
     private Connection connect() throws SQLException {
-        String URL = "jdbc:postgresql://localhost:5432/your_database_name";
+        String URL = "jdbc:postgresql://localhost:5432/dbname";
         String USER = "postgres";
         String PASSWORD = "";
         return DriverManager.getConnection(URL, USER, PASSWORD);
@@ -16,8 +16,8 @@ public class CustomerRepository {
 
     public List<Customer> findAll() {
         List<Customer> list = new ArrayList<>();
-        String sql = "SELECT id, full_name, email FROM customers WHERE is_deleted = false";
-
+//        String sql = "SELECT id, full_name, email FROM customers WHERE is_deleted = false";
+        String sql = "SELECT * FROM customers";
         try (Connection conn = connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -29,11 +29,9 @@ public class CustomerRepository {
                 c.setEmail(rs.getString("email"));
                 list.add(c);
             }
-
         } catch (SQLException e) {
             System.out.println("Error");
         }
-
         return list;
     }
 }

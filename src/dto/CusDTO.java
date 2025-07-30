@@ -1,6 +1,6 @@
 package dto;
 
-public record CusRepository(
+public record CusDTO(
         Integer id,
         String address,
         String city_or_province,

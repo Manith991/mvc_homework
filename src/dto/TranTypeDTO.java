@@ -1,6 +1,6 @@
 package dto;
 
-public record TranTypeRepository(
+public record TranTypeDTO(
       Integer id,
       Boolean is_deleted,
       String type

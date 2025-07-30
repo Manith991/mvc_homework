@@ -1,6 +1,6 @@
 package dto;
 
-public record KycRepository(
+public record KycDTO(
         Integer cus_id,
         Boolean is_deleted,
         Boolean is_verified,

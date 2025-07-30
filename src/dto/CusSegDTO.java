@@ -1,6 +1,6 @@
 package dto;
 
-public record CusSegRepository(
+public record CusSegDTO(
         Integer id,
         String description,
         Boolean is_deleted,

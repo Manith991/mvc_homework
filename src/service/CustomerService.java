@@ -14,7 +14,7 @@ public class CustomerService {
         List<Customer> customers = repo.findAll();
 
         return customers.stream()
-                .map(c -> new CustomerDTO(c.getFullName(), c.getEmail()))
+                .map(c -> new CustomerDTO(c.getId(),c.getAddress(),c.getCityOrProvince(),c.getCompanyName(),c.getCountry(),c.getDob(),c.getEmail(),c.getEmploymentType(),c.getFullName(),c.getGender(),c.getIsDeleted(),c.getMainSourceOfIncome(),c.getMonthlyIncomeRange(),c.getPhoneNumber(),c.getPosition(),c.getRemark(),c.getZipCode(),c.getCustomerSegmentId()))
                 .collect(Collectors.toList());
     }
 }

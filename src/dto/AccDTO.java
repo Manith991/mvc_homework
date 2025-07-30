@@ -1,6 +1,6 @@
 package dto;
 
-public record AccRepository(
+public record AccDTO(
         Integer id,
         String act_currency,
         String act_name,

@@ -1,6 +1,6 @@
 package dto;
 
-public record TranRepository(
+public record TranDTO(
         Integer id,
         Double amount,
         Boolean is_deleted,
