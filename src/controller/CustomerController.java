@@ -1,8 +1,8 @@
 package controller;
 
 import dto.CustomerDTO;
+import model.Customer;
 import service.CustomerService;
-
 import java.util.List;
 
 public class CustomerController {
@@ -10,5 +10,9 @@ public class CustomerController {
 
     public List<CustomerDTO> getCustomers() {
         return service.getAllCustomers();
+    }
+
+    public boolean addCustomer(Customer customer) {
+        return service.addCustomer(customer);
     }
 }

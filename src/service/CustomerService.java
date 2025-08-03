@@ -17,4 +17,8 @@ public class CustomerService {
                 .map(c -> new CustomerDTO(c.getId(),c.getAddress(),c.getCityOrProvince(),c.getCompanyName(),c.getCountry(),c.getDob(),c.getEmail(),c.getEmploymentType(),c.getFullName(),c.getGender(),c.getIsDeleted(),c.getMainSourceOfIncome(),c.getMonthlyIncomeRange(),c.getPhoneNumber(),c.getPosition(),c.getRemark(),c.getZipCode(),c.getCustomerSegmentId()))
                 .collect(Collectors.toList());
     }
+
+    public boolean addCustomer(Customer customer) {
+        return repo.insertCustomer(customer);
+    }
 }

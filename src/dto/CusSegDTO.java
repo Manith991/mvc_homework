@@ -5,5 +5,4 @@ public record CusSegDTO(
         String description,
         Boolean is_deleted,
         String segment
-) {
-}
+) { }

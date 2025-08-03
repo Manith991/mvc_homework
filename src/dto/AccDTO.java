@@ -11,5 +11,4 @@ public record AccDTO(
         Integer account_type_id,
         Integer cus_id,
         Double over_limit
-) {
-}
+) { }
