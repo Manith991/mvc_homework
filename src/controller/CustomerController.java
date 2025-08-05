@@ -12,7 +12,19 @@ public class CustomerController {
         return service.getAllCustomers();
     }
 
+    public CustomerDTO getCustomerById(int id) {
+        return service.getCustomerById(id);
+    }
+
     public boolean addCustomer(Customer customer) {
         return service.addCustomer(customer);
+    }
+
+    public boolean updateCustomer(Customer customer) {
+        return service.updateCustomer(customer);
+    }
+
+    public boolean deleteCustomer(int id) {
+        return service.deleteCustomer(id);
     }
 }

@@ -16,7 +16,10 @@ public class CustomerView {
             System.out.println("\nCustomer Management System");
             System.out.println("1. View All Customers");
             System.out.println("2. Add New Customer");
-            System.out.println("3. Exit");
+            System.out.println("3. Update Customer");
+            System.out.println("4. Delete Customer");
+            System.out.println("5. Search Customer by ID");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -30,6 +33,15 @@ public class CustomerView {
                     addCustomer();
                     break;
                 case 3:
+                    updateCustomer();
+                    break;
+                case 4:
+                    deleteCustomer();
+                    break;
+                case 5:
+                    searchCustomerById();
+                    break;
+                case 6:
                     System.out.println("Exiting...");
                     return;
                 default:
@@ -142,5 +154,84 @@ public class CustomerView {
         } else {
             System.out.println("Failed to add customer.");
         }
+    }
+    private void updateCustomer() {
+        System.out.println("\nUpdate Customer");
+        System.out.print("Enter customer ID to update: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        CustomerDTO existingCustomer = controller.getCustomerById(id);
+        if (existingCustomer == null) {
+            System.out.println("Customer not found with ID: " + id);
+            return;
+        }
+
+        Customer customer = new Customer();
+        customer.setId(id);
+
+        System.out.print("Enter Address (" + existingCustomer.address() + "): ");
+        customer.setAddress(scanner.nextLine());
+
+        System.out.print("Enter City/Province (" + existingCustomer.cityOrProvince() + "): ");
+        customer.setCityOrProvince(scanner.nextLine());
+
+        // Add all other fields similarly...
+
+        boolean success = controller.updateCustomer(customer);
+        if (success) {
+            System.out.println("Customer updated successfully!");
+        } else {
+            System.out.println("Failed to update customer.");
+        }
+    }
+
+    private void deleteCustomer() {
+        System.out.println("\nDelete Customer");
+        System.out.print("Enter customer ID to delete: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        boolean success = controller.deleteCustomer(id);
+        if (success) {
+            System.out.println("Customer deleted successfully!");
+        } else {
+            System.out.println("Failed to delete customer or customer not found.");
+        }
+    }
+
+    private void searchCustomerById() {
+        System.out.println("\nSearch Customer by ID");
+        System.out.print("Enter customer ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        CustomerDTO customer = controller.getCustomerById(id);
+        if (customer != null) {
+            displayCustomerDetails(customer);
+        } else {
+            System.out.println("Customer not found with ID: " + id);
+        }
+    }
+
+    private void displayCustomerDetails(CustomerDTO customer) {
+        System.out.println("\nCustomer Details:");
+        System.out.println("ID: " + customer.id());
+        System.out.println("Full Name: " + customer.fullName());
+        System.out.println("Phone: " + customer.phoneNumber());
+        System.out.println("Email: " + customer.email());
+        System.out.println("DOB: " + customer.dob());
+        System.out.println("Gender: " + customer.gender());
+        System.out.println("Address: " + customer.address());
+        System.out.println("City/Province: " + customer.cityOrProvince());
+        System.out.println("Country: " + customer.country());
+        System.out.println("Zip Code: " + customer.zipCode());
+        System.out.println("Company: " + customer.companyName());
+        System.out.println("Position: " + customer.position());
+        System.out.println("Employment Type: " + customer.employmentType());
+        System.out.println("Income Source: " + customer.mainSourceOfIncome());
+        System.out.println("Income Range: " + customer.monthlyIncomeRange());
+        System.out.println("Segment ID: " + customer.customerSegmentId());
+        System.out.println("Deleted: " + customer.isDeleted());
     }
 }
